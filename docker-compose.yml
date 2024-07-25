@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    image: pcourbin/decidim:0.28.2
+    environment:
+      - DATABASE_HOST=pg
+      - DATABASE_USERNAME=decidim
+      - DATABASE_PASSWORD=pgpassword
+      - RAILS_ENV=development
+      - DB_CREATE=true
+      - DB_SEED_DATA=true
+    ports:
+      - 3000:3000
+    links:
+      - pg
+
+  pg:
+    image: postgres
+    environment:
+      - POSTGRES_USER=decidim
+      - POSTGRES_PASSWORD=pgpassword
